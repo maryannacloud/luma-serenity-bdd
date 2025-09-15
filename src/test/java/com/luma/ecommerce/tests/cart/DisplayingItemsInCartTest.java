@@ -1,19 +1,18 @@
-package com.luma.ecommerce.tests.newsletters;
+package com.luma.ecommerce.tests.cart;
 
 import net.serenitybdd.core.steps.UIInteractions;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
-import net.serenitybdd.screenplay.ui.Button;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(SerenityJUnit5Extension.class)
-public class SubscribingToNewsletterTest extends UIInteractions {
+public class DisplayingItemsInCartTest extends UIInteractions {
 
     @Test
-    void shouldBeAbleToSubscribeWithValidEmail(){
-        openUrl("https://magento.softwaretestingboard.com/");
-        $("#newsletter").type("myemail@acme.com");
-        find(Button.withText("Subscribe")).click();
-    }
+    void shouldDisplayNoItemsMessageIfCartIsEmpty(){
 
+        openUrl("https://magento.softwaretestingboard.com/");
+        $(".showcart").click();
+        waitForTextToAppear( "You have no items in your shopping cart.");
+    }
 }
