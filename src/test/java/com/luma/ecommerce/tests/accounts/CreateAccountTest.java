@@ -1,6 +1,7 @@
 package com.luma.ecommerce.tests.accounts;
 
 import com.luma.ecommerce.actions.LoginActions;
+import com.luma.ecommerce.actions.NavigationActions;
 import com.luma.ecommerce.actions.RegisterAccountActions;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.steps.UIInteractions;
@@ -14,6 +15,9 @@ public class CreateAccountTest extends UIInteractions {
     @Steps
     LoginActions login;
 
+    @Steps
+    NavigationActions navigate;
+
 
     @Test
     public void shouldCreateNewCustomerAccount(){
@@ -26,7 +30,10 @@ public class CreateAccountTest extends UIInteractions {
     void shouldBeAbleToLoginWithRegisteredAccount(){
         String email = randomEmail();
         registerAccount.forNewCustomer("Amelia", "Pond", email, "Secret123");
+        login.signOut();
+        navigate.openTheLumaApplication();
         login.usingEmailAndPassword(email, "Secret123");
+        waitForTextToAppear("Welcome, Amelia Pond!");
     }
 
     private String randomEmail(){
