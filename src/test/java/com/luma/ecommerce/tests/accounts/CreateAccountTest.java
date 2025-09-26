@@ -1,35 +1,35 @@
 package com.luma.ecommerce.tests.accounts;
 
+import com.luma.ecommerce.actions.LoginActions;
+import com.luma.ecommerce.actions.RegisterAccountActions;
+import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.steps.UIInteractions;
-import net.serenitybdd.screenplay.ui.Button;
-import net.serenitybdd.screenplay.ui.Checkbox;
-import net.serenitybdd.screenplay.ui.InputField;
-import net.serenitybdd.screenplay.ui.Link;
 import org.junit.jupiter.api.Test;
 
 public class CreateAccountTest extends UIInteractions {
 
+    @Steps
+    RegisterAccountActions registerAccount;
+
+    @Steps
+    LoginActions login;
+
+
     @Test
     public void shouldCreateNewCustomerAccount(){
-        openUrl("https://magento.softwaretestingboard.com/");
 
-        find(Link.withText("Create An Account")).click();
+        registerAccount.forNewCustomer("Sarah-Jane", "Smith", randomEmail(), "Secret123");
+        waitForTextToAppear("Thank you for registering with Main Website Store");
+    }
 
-        find(InputField.withLabel("First Name")).type("Sarah-Jane");
-        find(InputField.withLabel("Last Name")).type("Smith");
-
-        find(Checkbox.withLabel("Sign Up For Newsletter")).click();
-
+    @Test
+    void shouldBeAbleToLoginWithRegisteredAccount(){
         String email = randomEmail();
-
-        find(InputField.withLabel("Email")).type(email);
-        find(InputField.withLabel("Password")).type("Secret123");
-        find(InputField.withLabel("Confirm Password")).type("Secret123");
-
-        find(Button.withText("Create an Account")).click();
+        registerAccount.forNewCustomer("Amelia", "Pond", email, "Secret123");
+        login.usingEmailAndPassword(email, "Secret123");
     }
 
     private String randomEmail(){
-        return "sarah-jane.smith" + System.currentTimeMillis() + "@example.com";
+        return "some_random_email" + System.currentTimeMillis() + "@example.com";
     }
 }
