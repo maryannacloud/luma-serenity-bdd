@@ -3,7 +3,7 @@ package com.luma.ecommerce.pageobjects;
 import net.serenitybdd.core.pages.PageComponent;
 import net.serenitybdd.screenplay.ui.Image;
 
-public class HotSellersComponent extends PageComponent {
+public class ProductItemPanel extends PageComponent {
 
     public void selectItem(String itemName) {
         $(Image.withAltText(itemName)).click();

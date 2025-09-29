@@ -1,6 +1,5 @@
 package com.luma.ecommerce.tests.navigation;
 
-import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.core.steps.UIInteractions;
 import net.serenitybdd.screenplay.ui.Button;
 import net.serenitybdd.screenplay.ui.PageElement;

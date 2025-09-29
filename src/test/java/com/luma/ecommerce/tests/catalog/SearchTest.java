@@ -5,9 +5,7 @@ import com.luma.ecommerce.actions.SearchActions;
 import com.luma.ecommerce.actions.SearchResultsPage;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.steps.UIInteractions;
-import net.serenitybdd.screenplay.ui.InputField;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Keys;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -23,7 +21,7 @@ public class SearchTest extends UIInteractions {
 
     @Test
     public void shouldDisplaySearchResults(){
-        navigate.openTheLumaApplication();
+        navigate.toTheApplication();
 
         search.forProduct("Hero Hoodie");
 

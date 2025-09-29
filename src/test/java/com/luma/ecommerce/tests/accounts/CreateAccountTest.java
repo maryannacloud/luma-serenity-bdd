@@ -31,7 +31,7 @@ public class CreateAccountTest extends UIInteractions {
         String email = randomEmail();
         registerAccount.forNewCustomer("Amelia", "Pond", email, "Secret123");
         login.signOut();
-        navigate.openTheLumaApplication();
+        navigate.toTheApplication();
         login.usingEmailAndPassword(email, "Secret123");
         waitForTextToAppear("Welcome, Amelia Pond!");
     }
